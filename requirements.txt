@@ -1,0 +1,11 @@
+# Step 1-2: collection and cleaning
+google-play-scraper
+pandas
+
+# Steps 3-4: baseline model and topics
+scikit-learn
+matplotlib
+
+# Step 6: Arabic transformer comparison
+torch
+transformers
