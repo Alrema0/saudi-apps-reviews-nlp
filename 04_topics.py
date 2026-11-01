@@ -118,13 +118,16 @@ def main() -> None:
 
     # How many complaints per topic, split by app (counts, so bars are comparable)
     counts = pd.crosstab(neg["topic"], neg["app"]).reindex(range(N_TOPICS), fill_value=0)
-    fig, ax = plt.subplots(figsize=(8, 4.5))
+    fig, ax = plt.subplots(figsize=(10, 5.5))
     counts.plot(kind="bar", stacked=True, ax=ax, width=0.7)
-    ax.set_xlabel("topic number (see topics_summary.csv)")
+    ax.set_xticklabels(["App won't open", "Fails on mobile data", "Freezes / hangs",
+                        "Login problems", "Password reset", "Face verification",
+                        "Update issues", "Slow / server errors"],
+                       rotation=30, ha="right")
+    ax.set_xlabel("")
     ax.set_ylabel("number of negative reviews")
     ax.set_title(f"Complaint topics by app ({len(neg)} reviews, 1-2 stars)")
     ax.legend(title="app")
-    plt.xticks(rotation=0)
     fig.tight_layout()
     fig.savefig(OUT_DIR / "topics_by_app.png", dpi=150)
     print("Saved: outputs/topics_summary.csv, negative_reviews_topics.csv, topics_by_app.png")
